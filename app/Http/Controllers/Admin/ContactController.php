@@ -21,6 +21,7 @@ class ContactController extends Controller
             'hero_subtitle'    => 'nullable|string',
             'address'          => 'nullable|string',
             'email'            => 'required|email|max:255',
+            'instagram_url'    => 'nullable|url|max:255',
             'whatsapp'         => 'required|string|max:50',
             'whatsapp_message' => 'nullable|string',
             'phone'            => 'nullable|string|max:50',
@@ -34,7 +35,7 @@ class ContactController extends Controller
         ContactSetting::updateOrCreate(
             ['id' => 1],
             $request->only([
-                'hero_title', 'hero_subtitle', 'address', 'email',
+                'hero_title', 'hero_subtitle', 'address', 'email', 'instagram_url',
                 'whatsapp', 'whatsapp_message', 'phone',
                 'cta_title', 'cta_description',
                 'map_link', 'latitude', 'longitude',

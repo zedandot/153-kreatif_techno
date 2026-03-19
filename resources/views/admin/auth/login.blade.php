@@ -61,13 +61,13 @@
                         <span id="errorMessage">Username atau password salah.</span>
                     </div>
 
-                    {{-- Username --}}
+                    {{-- Email --}}
                     <div>
-                        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-                        <input type="text" id="username" name="username" required
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" required
                             class="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-all text-sm outline-none"
-                            placeholder="Enter your username"
-                            value="{{ app()->environment('local') ? 'kreatif153' : '' }}">
+                            placeholder="Enter your email"
+                            value="{{ app()->environment('local') ? 'admin@gmail.com' : '' }}">
                     </div>
 
                     {{-- Password --}}

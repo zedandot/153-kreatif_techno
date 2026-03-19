@@ -11,6 +11,7 @@ class ContactSetting extends Model
         'hero_subtitle',
         'address',
         'email',
+        'instagram_url',
         'whatsapp',
         'whatsapp_message',
         'phone',
