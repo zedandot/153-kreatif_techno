@@ -140,7 +140,7 @@
                 {{-- Image --}}
                 @if($service->image)
                     <div class="aspect-[16/7] overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('storage/'.$service->image) }}" alt="{{ $service->title }}" class="w-full h-full object-cover pointer-events-none">
+                        <img src="{{ asset('storage/'.$service->image) }}" alt="{{ $service->name }}" class="w-full h-full object-cover pointer-events-none">
                     </div>
                 @else
                     <div class="aspect-[16/7] bg-gray-100 rounded-t-xl flex items-center justify-center pointer-events-none">

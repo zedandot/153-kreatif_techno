@@ -4,20 +4,13 @@
 
 @push('styles')
 <style>
-/* Marquee Animation */
-.animate-marquee {
-    animation: marquee 12s linear infinite;
+/* Continuous Scroll Marquee */
+.animate-scroll {
+    animation: scroll 30s linear infinite;
 }
-.animate-marquee2 {
-    animation: marquee2 12s linear infinite;
-}
-@keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
-}
-@keyframes marquee2 {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(0%); }
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 </style>
 @endpush
@@ -62,17 +55,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 text-center">
         <p class="text-xs sm:text-sm font-bold text-gray-400 tracking-widest uppercase" style="font-family: 'Montserrat', sans-serif;">Mitra yang telah bekerja sama dengan kami</p>
     </div>
-    <div class="relative flex overflow-x-hidden group">
+    <div class="relative flex overflow-hidden group bg-white w-full border-y border-transparent">
         @if($clients->count() > 0)
-            <div class="py-4 animate-marquee whitespace-nowrap flex items-center gap-12 sm:gap-20 px-10">
-                @foreach($clients as $client)
-                    <img src="{{ asset('storage/'.$client->logo) }}" alt="{{ $client->name }}" title="{{ $client->name }}" class="h-10 sm:h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                @endforeach
-            </div>
-            <div class="absolute top-0 py-4 animate-marquee2 whitespace-nowrap flex items-center gap-12 sm:gap-20 px-10">
-                @foreach($clients as $client)
-                    <img src="{{ asset('storage/'.$client->logo) }}" alt="{{ $client->name }}" title="{{ $client->name }}" class="h-10 sm:h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                @endforeach
+            <!-- flex container with w-max holds multiple identical copies to create seamless -50% translation loop -->
+            <div class="flex w-max animate-scroll hover:[animation-play-state:paused] py-4 items-center">
+                @for($i = 0; $i < 6; $i++)
+                <div class="flex items-center gap-12 sm:gap-20 pr-12 sm:pr-20 flex-shrink-0">
+                    @foreach($clients as $client)
+                        <img src="{{ asset('storage/'.$client->logo) }}" alt="{{ $client->name }}" title="{{ $client->name }}" class="h-10 sm:h-12 w-auto max-w-[160px] object-contain flex-shrink-0 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    @endforeach
+                </div>
+                @endfor
             </div>
         @else
             <div class="py-4 flex justify-center w-full">
@@ -135,7 +128,7 @@
 @if($services->count() > 0)
 <section class="py-24 lg:py-32 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 data-aos="fade-up" class="text-3xl sm:text-4xl font-extrabold text-gray-900 text-center mb-4" style="font-family: 'Montserrat', sans-serif;">Layanan Kami</h2>
+        <h2 data-aos="fade-up" class="text-3xl sm:text-4xl font-extrabold text-gray-900 text-center mb-4" style="font-family: 'Montserrat', sans-serif;">Layanan Utama</h2>
         <div data-aos="zoom-in" class="w-16 h-1.5 bg-[#ff6a00] mx-auto mb-6 rounded-full"></div>
         <p data-aos="fade-up" data-aos-delay="100" class="text-gray-600 text-center max-w-2xl mx-auto mb-14 text-lg" style="font-family: 'Inter', sans-serif;">Solusi terpadu dari konsep hingga eksekusi</p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
