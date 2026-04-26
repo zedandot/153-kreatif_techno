@@ -64,7 +64,8 @@
   --ease:   cubic-bezier(.25,.46,.45,.94);
 }
 
-/* Layout shell — no global reset (conflicts with Tailwind) */
+/* Layout shell */
+*, *::before, *::after { box-sizing: border-box; }
 html,body{height:100vh;height:100dvh;overflow:hidden}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
