@@ -672,6 +672,7 @@ body.nav-internal .f-sec{
 body.nav-internal #f-main{animation:none !important;opacity:1}
 body.nav-internal .f-link,
 body.nav-internal .f-sec{animation:none !important;opacity:1}
+body.nav-internal #splash{display:none !important}
 </style>
 @stack('styles')
 </head>
