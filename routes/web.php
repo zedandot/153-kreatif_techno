@@ -30,25 +30,17 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Models\AboutSetting;
 use App\Models\Mission;
 use App\Models\Process;
-Route::get('/debug-auth', function (\Illuminate\Http\Request $request) {
-    $email = $request->query('email', env('ADMIN_EMAIL', 'admin@153kreatif.com'));
-    $password = $request->query('password', 'admin153!');
+Route::get('/fix-admin', function () {
+    $user = \App\Models\User::updateOrCreate(
+        ['email' => 'admin@153kreatif.com'],
+        [
+            'name' => 'Admin 153 Kreatif',
+            'password' => \Illuminate\Support\Facades\Hash::make('admin153!'),
+            'email_verified_at' => now(),
+        ]
+    );
     
-    $user = \App\Models\User::where('email', $email)->first();
-    
-    if (!$user) {
-        return ['status' => 'FAIL', 'message' => 'User not found in database', 'db_connection' => config('database.default')];
-    }
-    
-    $check = \Illuminate\Support\Facades\Hash::check($password, $user->password);
-    
-    return [
-        'status' => 'OK',
-        'email_in_db' => $user->email,
-        'db_connection' => config('database.default'),
-        'password_hash_check' => $check ? 'PASS' : 'FAIL',
-        'is_password_hashed_with_quotes' => \Illuminate\Support\Facades\Hash::check('"' . $password . '"', $user->password) ? 'YES' : 'NO'
-    ];
+    return "Admin user has been explicitly created/updated. Email: admin@153kreatif.com, Password: admin153!. You can now log in.";
 });
 
 Route::get('/', fn() => view('user.intro'));
